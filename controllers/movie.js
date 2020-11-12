@@ -1,9 +1,77 @@
-exports.getMovies = async (req, res, next) => {};
+const Movie = require('../models/movie');
 
-exports.getMovie = async (req, res, next) => {};
+exports.getMovies = async (req, res, next) => {
+  try {
+    const movies = await Movie.find();
+    res.status(200).json(movies);
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500;
+    }
+    next(error);
+  }
+};
 
-exports.createMovie = async (req, res, next) => {};
+exports.getMovie = async (req, res, next) => {
+  try {
+    const movie = await Movie.findById(req.params.movieId);
+    res.status(200).json(movie);
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500;
+    }
+    next(error);
+  }
+};
 
-exports.updateMovie = async (req, res, next) => {};
+exports.createMovie = async (req, res, next) => {
+  try {
+    let movie = new Movie({
+      title: req.body.title,
+      description: req.body.description,
+      release_date: req.body.release_date,
+      stock: req.body.stock,
+    });
 
-exports.deleteMovie = async (req, res, next) => {};
+    movie = await movie.save();
+    res.status(201).json(movie);
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500;
+    }
+    next(error);
+  }
+};
+
+exports.updateMovie = async (req, res, next) => {
+  try {
+    const movie = await Movie.findByIdAndUpdate(
+      req.params.movieId,
+      {
+        title: req.body.title,
+        description: req.body.description,
+        release_date: req.body.release_date,
+        stock: req.body.stock,
+      },
+      { new: true }
+    );
+    res.status(200).json(movie);
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500;
+    }
+    next(error);
+  }
+};
+
+exports.deleteMovie = async (req, res, next) => {
+  try {
+    const movie = await Movie.findByIdAndRemove(req.params.movieId);
+    res.status(200).json(movie);
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500;
+    }
+    next(error);
+  }
+};
