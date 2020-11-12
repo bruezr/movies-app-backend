@@ -1,14 +1,14 @@
 {
   "name": "movies-app-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend de Movies app",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Bruno Rocha",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",
@@ -17,5 +17,8 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.6"
+  },
+  "engines": {
+    "node": "14.6.0"
   }
 }
