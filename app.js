@@ -9,6 +9,15 @@ app.use(express.json());
 
 app.use('/', moviesRoutes);
 
+app.use((error, req, res, next) => {
+  console.log(error);
+  const status = error.statusCode;
+  const message = error.message;
+  res.status(status).json({
+    message: message,
+  });
+});
+
 const databaseUser = process.env.MONGO_USER;
 const databasePsw = process.env.MONGO_PASSWORD;
 const databaseName = process.env.MONGO_DATABASE;
