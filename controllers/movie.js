@@ -1,4 +1,5 @@
 const Movie = require('../models/movie');
+const validate = require('../services/validator');
 
 exports.getMovies = async (req, res, next) => {
   try {
@@ -25,7 +26,12 @@ exports.getMovie = async (req, res, next) => {
 };
 
 exports.createMovie = async (req, res, next) => {
+  const validationResult = validate(req.body);
+
   try {
+    if (!validationResult) {
+      throw new Error('validation error');
+    }
     let movie = new Movie({
       title: req.body.title,
       description: req.body.description,
@@ -44,7 +50,12 @@ exports.createMovie = async (req, res, next) => {
 };
 
 exports.updateMovie = async (req, res, next) => {
+  const validationResult = validate(req.body);
+
   try {
+    if (!validationResult) {
+      throw new Error('validation error');
+    }
     const movie = await Movie.findByIdAndUpdate(
       req.params.movieId,
       {

@@ -10,6 +10,7 @@ const movieSchema = new Schema({
   description: {
     type: String,
     required: true,
+    maxlength: 500,
   },
   release_date: {
     type: Number,
