@@ -21,9 +21,11 @@ app.use('/api', moviesRoutes);
 
 app.use('/', (req, res, next) => {
   try {
-    res.send(
-      'Hola, por favor chequear documentación en https://github.com/bruezr/movies-app-backend'
-    );
+    res
+      .status(404)
+      .send(
+        'Hola, por favor chequear documentación en https://github.com/bruezr/movies-app-backend'
+      );
   } catch (error) {
     if (!error.statusCode) {
       error.statusCode = 500;
