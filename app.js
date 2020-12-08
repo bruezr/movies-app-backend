@@ -17,7 +17,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/api', moviesRoutes);
+app.use('/api/movies', moviesRoutes);
 
 app.use('/', (req, res, next) => {
   try {
