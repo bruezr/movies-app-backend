@@ -26,11 +26,11 @@ exports.getMovie = async (req, res, next) => {
 };
 
 exports.createMovie = async (req, res, next) => {
-  const validationResult = validate(req.body);
+  const validationResult = validate.validateMovie(req.body);
 
   try {
     if (!validationResult) {
-      throw new Error('validation error');
+      throw new Error('Validation error');
     }
     let movie = new Movie({
       title: req.body.title,

@@ -1,7 +1,8 @@
 const Ajv = require('ajv');
 const ajv = new Ajv({ allErrors: true });
-const jsonSchema = require('./schema.json');
+const jsonMovieSchema = require('./movieSchema.json');
+const jsonUserSchema = require('./userSchema.json');
 
-let validate = ajv.compile(jsonSchema);
+exports.validateMovie = ajv.compile(jsonMovieSchema);
 
-module.exports = validate;
+exports.validateUser = ajv.compile(jsonUserSchema);

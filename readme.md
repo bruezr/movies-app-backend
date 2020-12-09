@@ -4,9 +4,14 @@ Sirve información de películas desde una Mongo DB para alimentar al [Frontend 
 
 ## Detalles 👀
 
-- Deploy en Heroku con sync automatico del branch master de GitHub
 
-- Validación del request body con AJV - Aplica para POST y PUT
+- Validación del request body con AJV - Aplica para POST y PUT y Sign Up de usuarios. Ademas se valida que no haya usuarios duplicados, tomando el mail como UID
+
+- Las contraseñas se almacenan en la DB hasheadas con un salt
+
+- Se envia al cliente, por medio de custom header, un JWT  con un payload de su ID para ahorrar querys en la DB
+
+- Deploy en Heroku con sync automatico del branch master de GitHub
 
 - Error handler global para todos los endpoint
 
