@@ -26,7 +26,7 @@ exports.postUser = async (req, res, next) => {
 
     const token = user.generateAuthToken();
 
-    res.header('x-auth-token', token).send({
+    res.header('x-auth-token', token).json({
       name: user.name,
       email: user.email,
     });
@@ -40,5 +40,5 @@ exports.postUser = async (req, res, next) => {
 
 exports.getUserInfo = async (req, res) => {
   const user = await User.findById(req.user._id).select('-password');
-  res.send(user);
+  res.json(user);
 };

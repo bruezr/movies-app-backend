@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 exports.postUser = async (req, res, next) => {
   try {
     let user = await User.findOne({ email: req.body.email });
-    if (!user) return res.status(400).send('Invalid email or password');
+    if (!user) return res.status(400).json('Invalid email or password');
 
     const validPassword = await bcrypt.compare(
       req.body.password,
@@ -12,11 +12,11 @@ exports.postUser = async (req, res, next) => {
     );
 
     if (!validPassword)
-      return res.status(400).send('Invalid email or password');
+      return res.status(400).json('Invalid email or password');
 
     const token = user.generateAuthToken();
 
-    res.send(token);
+    res.json(token);
   } catch (error) {
     if (!error.statusCode) {
       error.statusCode = 500;
