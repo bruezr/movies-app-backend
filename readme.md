@@ -20,3 +20,22 @@ Sirve información de películas desde una Mongo DB para alimentar al [Frontend 
 -  Por motivos de seguridad todas los datos sensibles se almacenan en variables de entorno
 
 
+## Endpoints
+
+Endpoints Movies     | Method        | ¿Necesita Auth?   |  [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/270a79c044b38139cc0f)
+-------------        | ------------- | -------------     |  -----------
+/api/movies         | GET           | NO                | 
+/api/movies/movieId  | GET           | NO                |
+/api/movies/movieId  | POST          | SI                |
+/api/movies/movieId  | DELETE        | SI                |
+/api/movies/movieId  | PUT           | SI                |
+
+
+Endpoints Users     | Method        | ¿Necesita Auth?   |  [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/049ce07efcbb140ae0a4)
+-------------        | ------------- | -------------     |  -----------
+/api/users/me        | GET           | SI                | 
+/api/users          | POST          | NO                |
+
+Endpoint Auth     | Method        | ¿Necesita Auth?   |  [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/93d880706486cfac84b2)
+-------------        | ------------- | -------------     |  -----------
+/api/auth          | POST          | NO                |
